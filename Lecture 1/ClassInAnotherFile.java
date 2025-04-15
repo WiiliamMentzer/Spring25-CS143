@@ -13,7 +13,7 @@ public class ClassInAnotherFile {
       System.out.println("x: " + x );
       System.out.println("y: " + y );
       // TRY ADDING AND REMOVING THIS LINE, AND SEE IF jGRASP "NOTICES" THE CHANGE WHEN YOU RUN LECTURE01.JAVA
-      // System.out.println("z: " + z );
+      System.out.println("z: " + z );
    }
 
 }
