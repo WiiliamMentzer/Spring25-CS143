@@ -14,6 +14,10 @@ public class ItemOrder {
         return priceOf;
     }
 
+    public void remove() {
+        this.quantity = 0;
+    }
+
     public Item getItem() {
         return this.item;
     }

@@ -8,6 +8,7 @@ public class Catalog {
 
     public Catalog(String name) {
         this.name = name;
+        this.items = new ArrayList<Item>();
     }
 
     public void add(Item next) {
