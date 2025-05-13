@@ -31,8 +31,10 @@ public class TallyVotes2 {
   public static ArrayList<Ballot> readFile(Scanner input) {
     ArrayList<Ballot> result = new ArrayList<>();
     while (input.hasNextLine()) {
-      String text = input.nextLine();
-      result.add(new Ballot(text.split("\t")));
+      if (!input.nextLine().isEmpty()){
+        String text = input.nextLine();
+        result.add(new Ballot(text.split("\t")));
+      }
     }
     return result;
   }
@@ -95,6 +97,9 @@ public class TallyVotes2 {
       ArrayList<Ballot> ballots) {
     for (Ballot b : ballots) {
       b.eliminate(candidate);
+      if (b.isEmpty()) {
+        ballots.remove(b);
+      }
     }
   }
 }

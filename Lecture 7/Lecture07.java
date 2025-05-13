@@ -1,5 +1,6 @@
 
 class Lecture07 {
+    //Lecture 7 by William Mentzer
 
     public static void main(String[] args) {
         System.out.println("Hello from lecture 07");
@@ -74,16 +75,122 @@ class Lecture07 {
         The method should throw an IllegalArgumentException if passed a value less than 0.
          */
         starString(4);
+        System.out.println();
 
         // Put your answer for #2 here:
+
+        //2. Write a method called writeNums that takes an integer n as a parameter and prints to the console the first n integers starting with 1 in sequential order, separated by commas. 
+
+        writeNums(5);
+        System.out.println();
+
+
         // Put your answer for #3 here:
+
+        /*
+        3. Write a method called writeSequence that accepts an integer n
+        as a parameter and prints to the console a symmetric sequence of n numbers composed of descending integers that ends in 1,
+        followed by a sequence of ascending integers that begins with 1.  
+        */
+
+        writeSequence(5);
+        System.out.println();
+
         // Put your answer for #10 here:
+        System.out.println(digitMatch(12, 12));
+
         // Put your answer for #12 here:
+        System.out.println(isReverse("OHIO", "OIHO"));
+
     }
+
+    public static void writeSequence(int n) throws IllegalArgumentException {
+        int instancedInt = 0;
+
+        if (n < 1) {
+            throw new IllegalArgumentException("Value cannot be less than 1");
+        }
+
+        if (n%2 != 0){
+            instancedInt = (n+1)/2;
+        } else {
+            instancedInt = n/2;
+        }
+
+        System.out.print(instancedInt + " ");
+
+        if (n-2 > 1) {
+            writeSequence(n-2);
+        } else if (n%2 != 0){
+            System.out.print(1 + " ");
+        }
+
+        System.out.print(instancedInt + " ");
+    }
+
+    public static int digitMatch(int n1, int n2) throws IllegalArgumentException {
+        if (n1 < 0 || n2 < 0){
+            throw new IllegalArgumentException("NO NEGATIVE VALUES ALLOWED");
+        } else if (n1 == 0 && n2 == 0){
+            return 1;
+        } else {
+            //Create bank of instanced numbers that match
+            int totalNum = 0;
+            //Check last digit
+            if(n1%10 == n2%10) {
+                totalNum++;
+            }
+            //Check if number has ended and return 0 if no match
+            if (n1 / 10 == 0 || n2 / 10 == 0){
+                return totalNum;
+            }
+            return totalNum + digitMatch(n1/10, n2/10);
+        }
+        //Where was all this recursive gameplay when we were learning recursion?
+        //I miss maps if i dont start using them again i just might forget them.
+    }
+
+    public static Boolean isReverse(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        StringBuilder strTrans1 = new StringBuilder(s1);
+        StringBuilder strTrans2 = new StringBuilder(s2);
+        //Ruled out any oopsies with casing
+        if (strTrans1.length() != strTrans2.length()) {
+            return false;
+        } else {
+            if (strTrans1.charAt(0) != strTrans2.charAt(strTrans2.length()-1) && strTrans1.length() > 1) {
+                return false;
+            } else if (strTrans1.length() == 1 && strTrans1.charAt(0) == strTrans2.charAt(0)) {
+                return true;
+            } else {
+                strTrans1.deleteCharAt(0);
+                strTrans2.deleteCharAt(strTrans2.length()-1);
+                return isReverse(strTrans1.toString(), strTrans2.toString());
+            }
+        }
+    }
+
+
+    public static void writeNums(int n) throws IllegalArgumentException {
+        if ( n < 1 ){
+            throw new IllegalArgumentException("Value cannot be less than 1");
+        } else {
+            if (n > 1) {
+                writeNums(n-1);
+                System.out.print(", ");
+            }
+            System.out.print(n);
+        }
+    }
+
 
     public static void starString(int s) throws IllegalArgumentException {
         if (s >= 1) {
-            System.out.print("**");
+            for (int i = s-1; i > 0 ; i--){
+                System.out.print("**");
+            }
             if ((s - 1) > 0) {
                 starString(s - 1);
             }
