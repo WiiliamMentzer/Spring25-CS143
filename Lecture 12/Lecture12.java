@@ -82,6 +82,7 @@ class Lecture12 {
         Stack s = new Stack<>();
         s.push(7);
         s.push(10);
+        System.out.println(s);
         System.out.println(s.pop());
         System.out.println(s.peek());
         s.push(3);
@@ -96,16 +97,16 @@ class Lecture12 {
         /*
 
         1. New stack s created.
-        2. add 7 and 10, now stack is [10, 7]
+        2. add 7 and 10, now stack is [7, 10]
         3. Print out s.pop, remove 10 and print it out
         4. Print out s.peek, we do not remove 7 we just look at it
-        4. add 3 then 5 to stack. now stack is [5, 3, 7]
-        5. s.pop and remove value 5. Now stack is [3, 7], also print it out
+        4. add 3 then 5 to stack. now stack is [7, 3, 5]
+        5. s.pop and remove value 5. Now stack is [7, 3], also print it out
         6. s.Isempty returns false, print that out
         7. check the size it should be 2, print it out
         8. peek into next value on stack, its 3
-        9. add 8 to the stack now stack is [8, 3 ,7]
-        10. pop and print out value, value is 8 so now stack is [3, 7], print 8
+        9. add 8 to the stack now stack is [7, 3 ,8]
+        10. pop and print out value, value is 8 so now stack is [7, 3], print 8
         11. pop and print out value, value is 3 so now stack is [7], print 3
 
         // 22. Write a piece of code that prints the elements of a queue of integers,
@@ -131,6 +132,9 @@ class Lecture12 {
         ques22Stack2.push("hi");
         ques22Stack2.push("goodbye");
         ques22Stack2.push("howdy");
+        System.out.println(ques22Stack2);
+        printLongest(ques22Stack2);
+        System.out.println(ques22Stack2);
         /*
         // For example, in the stack [hello, hi, goodbye, howdy], the longest string is
         // "goodbye". When your code is done running, the stack should still contain the
@@ -140,24 +144,22 @@ class Lecture12 {
         */
     }
 
-    public static void printLongest(Stack<Integer> s){
-        Stack ques22TempStack = new Stack<Integer>();
+    public static void printLongest(Stack s){
+        System.out.println(s);
+        Stack ques22TempStack = new Stack<String>();
         String str = "";
         while(!s.isEmpty()) {
-            ques22TempStack.push(s.peek());
-            String strTemp = (String) ques22TempStack.peek();
-
+            String strTemp = (String) s.peek();
+            ques22TempStack.push(s.pop());
+            
             if (strTemp.length() > str.length()){
                 str = strTemp;
             }
-
-            System.out.println(s.pop());
         }
-
-        System.out.println(str);
         while(!ques22TempStack.isEmpty()){
             s.push(ques22TempStack.pop());
         }
+        System.out.println(str);
     }
 
     public static void printStack(Stack s){
